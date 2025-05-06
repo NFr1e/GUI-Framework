@@ -24,10 +24,6 @@ namespace App.UI
         /// </summary>
         public abstract void OnUpdate();
         /// <summary>
-        /// 离开该页面时调用
-        /// </summary>
-        public abstract void OnExit();
-        /// <summary>
         /// 页面失焦时调用
         /// </summary>
         public abstract void OnPause();
@@ -35,6 +31,13 @@ namespace App.UI
         /// 页面聚焦时调用
         /// </summary>
         public abstract void OnResume();
+        /// <summary>
+        /// 离开该页面时调用
+        /// </summary>
+        public virtual IEnumerator OnExit()
+        {
+            yield return ExitAnimate();
+        }
 
         public virtual IEnumerator EnterAnimate()
         {

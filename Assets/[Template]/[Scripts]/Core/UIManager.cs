@@ -14,7 +14,10 @@ namespace App.UI
     }
     public class UIManager : Singleton<UIManager>
     {
-        public Transform PageLayer;
+        public Transform 
+            PageLayer,
+            PopupLayer,
+            TipLayer;
 
         private Dictionary<string, PageBase> _pageCache = new();
 
@@ -45,9 +48,19 @@ namespace App.UI
         {
             if (_pageCache.TryGetValue(pageKey, out PageBase page))
             {
-                page.OnExit();
-                _pageCache.Remove(pageKey);
+                StartCoroutine(UnloadProcess(pageKey, page));
             }
+        }
+        public IEnumerator UnloadProcess<T>(string key,T page) where T : PageBase
+        {
+            yield return page.OnExit();
+
+            if (page != null)
+            {
+                Destroy(page.gameObject);
+            }
+
+            _pageCache.Remove(key);
         }
     }
 }
