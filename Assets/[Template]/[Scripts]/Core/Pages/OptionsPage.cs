@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using App.UI;
 
@@ -8,6 +9,10 @@ namespace App.UI.Pages
 {
     public class OptionsPage : PageBase
     {
+        public Button 
+            AboutButton,
+            Settings_GeneralButton;
+
         public float
             DurationIn = 0.5f,
             DurationOut = 0.5f;
@@ -34,6 +39,18 @@ namespace App.UI.Pages
             PageRoot.position = new(_pageRootOrigin.x, _pageRootOrigin.y - _offset, _pageRootOrigin.z);
 
             StartCoroutine(EnterAnimate());
+
+            AboutButton.onClick.AddListener(() =>
+            {
+                UIManager.Instance.LoadPage("pages.about");
+                UIManager.Instance.DoPageOnExit("pages.tabbar");
+            });
+            Settings_GeneralButton.onClick.AddListener(() =>
+            {
+                UIManager.Instance.LoadPage("pages.settings.general");
+                UIManager.Instance.DoPageOnExit("pages.tabbar");
+            }
+            );
         }
         public override void OnUpdate()
         {
@@ -59,7 +76,7 @@ namespace App.UI.Pages
             _tweenMoveIn?.Kill();
 
             _canvasGroup.alpha = 0;
-            _canvasGroup.blocksRaycasts = false;
+            _canvasGroup.blocksRaycasts = true;
 
             _tweenFadeIn = DOTween
                 .To(() => _canvasGroup.alpha, a => _canvasGroup.alpha = a, 1, DurationIn)
@@ -67,7 +84,6 @@ namespace App.UI.Pages
                 .OnComplete(() =>
                 {
                     _canvasGroup.alpha = 1;
-                    _canvasGroup.blocksRaycasts = true;
                 });
 
             _tweenMoveIn = PageRoot
@@ -79,7 +95,9 @@ namespace App.UI.Pages
         public override IEnumerator ExitAnimate()
         {
             _tweenFadeOut?.Kill();
-            _tweenMoveOut?.Kill();
+            _tweenMoveOut?.Kill(); 
+
+            _canvasGroup.blocksRaycasts = false;
 
             _tweenFadeOut = DOTween
                 .To(() => _canvasGroup.alpha, a => _canvasGroup.alpha = a, 0, DurationOut)

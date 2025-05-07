@@ -9,7 +9,7 @@ namespace App.UI.Pages
 {
     public class SplashPage : PageBase
     {
-        public string NextPageKey = "Pages/WelcomeCanvas";
+        public string NextPageKey = "pages.tabbar";
 
         public float
             DurationOut = 0.5f;
@@ -81,7 +81,7 @@ namespace App.UI.Pages
 
             yield return _tweenSubTitleIn.WaitForCompletion();
 
-            UIManager.Instance.UnloadPage("Pages/SplashCanvas");
+            UIManager.Instance.UnloadPage("pages.splash");
         }
         public override IEnumerator ExitAnimate()
         {
@@ -98,7 +98,7 @@ namespace App.UI.Pages
         {
             Debug.Log($"{GetType().Name} StartedLoad:{NextPageKey}");
 
-            UIManager.Instance.LoadPage<PageBase>(NextPageKey);
+            UIManager.Instance.LoadPage(NextPageKey);
         }
     }
 }

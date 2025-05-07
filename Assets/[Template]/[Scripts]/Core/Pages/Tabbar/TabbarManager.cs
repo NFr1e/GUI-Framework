@@ -42,7 +42,7 @@ namespace App.UI.Components
                 UIManager.Instance.UnloadPage(currentPanelPath);
             }
 
-            UIManager.Instance.LoadPage<PageBase>(targetPanelPath);
+            UIManager.Instance.LoadPage(targetPanelPath);
             currentPanelPath = targetPanelPath;
 
             UpdateTabButtons(targetPanelPath);
@@ -58,7 +58,10 @@ namespace App.UI.Components
                 Image indicator = indicatorTrnasform.gameObject.GetComponent<Image>();
 
                 indicatorTrnasform.gameObject.SetActive(isActive);
-                indicator.DOFade(isActive ? 1 : 0, 0.2f);
+                indicator
+                    .DOFade(isActive ? 1 : 0, 0.5f)
+                    .From(0)
+                    .SetEase(Ease.OutExpo);
             }
         }
     }

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26854974d5b938949a2b4e5d033ac1e4, type: 3}
+  m_Name: PagesCollection
+  m_EditorClassIdentifier: 
+  Pages:
+  - PageName: Splash
+    PageObject: {fileID: 884825578759818468, guid: af02fcb325ee9ad4daa4fe421f656bb8, type: 3}
+    PageKey: pages.splash
+  - PageName: Welcome
+    PageObject: {fileID: 1309007120019049466, guid: ef0ccdf3a8087104eb40cb496a3dd442, type: 3}
+    PageKey: pages.welcome
+  - PageName: Tabbar
+    PageObject: {fileID: 7936114141262060871, guid: 250ffcee6891ffa49ac60d409c1c2c2f, type: 3}
+    PageKey: pages.tabbar
+  - PageName: Options
+    PageObject: {fileID: 2996089352329240666, guid: cf04235afb1a0b749bc761693e337dc2, type: 3}
+    PageKey: pages.options
+  - PageName: About
+    PageObject: {fileID: 9001000004531755587, guid: f731ef47d6b70a444babaaaa2b0ad004, type: 3}
+    PageKey: pages.about
+  - PageName: Settings.General
+    PageObject: {fileID: 5814669361292125280, guid: b353de5cd8e8bba41aee5d3882294d3c, type: 3}
+    PageKey: pages.settings.general

@@ -223,7 +223,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 4f65c4dd34a2f734e8e9a8b247c726cd, type: 3}
+    m_Font: {fileID: 12800000, guid: dbf8680fe60d6e442906c597fd9c4dc2, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff429f9ca12df5a409a08a61d3f13cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextPageKey: Pages/WelcomeCanvas
+  NextPageKey: pages.tabbar
   DurationOut: 0.5
   EaseOut: 18
   Title: {fileID: 5977076970325517793}

@@ -48,8 +48,8 @@ namespace App.UI.Pages
 
             ExitTrigger?.onClick.AddListener(() =>
             {
-                UIManager.Instance.UnloadPage("Pages/WelcomeCanvas");
-                UIManager.Instance.LoadPage<TabbarPage>("Pages/TabbarCanvas");
+                UIManager.Instance.UnloadPage("pages.welcome");
+                UIManager.Instance.LoadPage("pages.tabbar");
             });
 
             StartCoroutine(EnterAnimate());

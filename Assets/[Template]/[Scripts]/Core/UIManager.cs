@@ -14,27 +14,30 @@ namespace App.UI
     }
     public class UIManager : Singleton<UIManager>
     {
-        public Transform 
+        [SerializeField]
+        private PagesCollection pagesCollection;
+
+        [SerializeField]
+        private Transform 
             PageLayer,
             PopupLayer,
             TipLayer;
 
         private Dictionary<string, PageBase> _pageCache = new();
 
-        public void LoadPage<T>(string pageKey) where T : PageBase
+        public void LoadPage(string pageKey)
         {
             if (_pageCache.ContainsKey(pageKey))
                 _pageCache[pageKey].OnResume();
             else
             {
-                GameObject pageObject = Instantiate(Resources.Load<GameObject>(pageKey));
-                T page = pageObject.GetComponent<T>();
+                PageBase prefab = pagesCollection.GetPrefabByKey(pageKey);
+                if (prefab == null) return;
 
-                _pageCache.Add(pageKey,page);
+                GameObject pageObject = Instantiate(prefab.gameObject);
+                PageBase page = pageObject.GetComponent<PageBase>();
 
-                page.OnEnter();
-
-                if(PageLayer != null)
+                if (PageLayer != null)
                 {
                     pageObject.transform.SetParent(PageLayer);
                 }
@@ -42,16 +45,28 @@ namespace App.UI
                 {
                     Debug.LogWarning($"{pageKey} is loaded naked");
                 }
+
+                _pageCache.Add(pageKey,page);
+                page.OnEnter();
+            }
+        }
+        public void DoPageOnEnter(string pageKey)
+        {
+            if(_pageCache.TryGetValue(pageKey, out PageBase page))
+            {
+                page.OnEnter();
             }
         }
         public void UnloadPage(string pageKey)
         {
             if (_pageCache.TryGetValue(pageKey, out PageBase page))
             {
-                StartCoroutine(UnloadProcess(pageKey, page));
+                StartCoroutine(UnloadProcess(pageKey,page));
+
+                _pageCache.Remove(pageKey);
             }
         }
-        public IEnumerator UnloadProcess<T>(string key,T page) where T : PageBase
+        public IEnumerator UnloadProcess(string key,PageBase page)
         {
             yield return page.OnExit();
 
@@ -59,8 +74,17 @@ namespace App.UI
             {
                 Destroy(page.gameObject);
             }
-
-            _pageCache.Remove(key);
+        }
+        public void DoPageOnExit(string pageKey)
+        {
+            if (_pageCache.TryGetValue(pageKey, out PageBase page))
+            {
+                StartCoroutine(DoPageOnExitProcess(page));
+            }
+        }
+        public IEnumerator DoPageOnExitProcess<T>(T page) where T : PageBase
+        {
+            yield return page.OnExit();
         }
     }
 }

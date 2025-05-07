@@ -23,16 +23,25 @@ namespace App.UI.Pages
             _tweenOut;
         private Vector3
                 _tabbarOrigin;
+        private bool _initialized = false;
 
         private float _offset;
 
+        private void Start()
+        {
+            
+        }
+
         public override void OnEnter()
         {
-            _tabbarOrigin = Tabbar.position;
-            _offset = Tabbar.rect.height;
+            if (!_initialized) 
+            {
+                _offset = Tabbar.rect.height;
+                _tabbarOrigin = Tabbar.position;
 
-            Tabbar.position = new(_tabbarOrigin.x, _tabbarOrigin.y - _offset, _tabbarOrigin.z);
-
+                _initialized = true;
+            }
+            
             StartCoroutine(EnterAnimate());
         }
         public override void OnUpdate()
@@ -55,15 +64,18 @@ namespace App.UI.Pages
         }
         public override IEnumerator EnterAnimate()
         {
+            _canvasGroup.interactable = true;
+
             _tweenIn = Tabbar
                 .DOMove(_tabbarOrigin, DurationIn)
+                .From(new Vector3(_tabbarOrigin.x, _tabbarOrigin.y - _offset, _tabbarOrigin.z))
                 .SetEase(EaseIn);
 
             yield return _tweenIn;
         }
         public override IEnumerator ExitAnimate()
         {
-            yield return new WaitForSeconds(1);
+            _canvasGroup.interactable = false;
 
             _tweenOut = Tabbar
                 .DOMove(new(_tabbarOrigin.x, _tabbarOrigin.y - _offset, _tabbarOrigin.z),DurationOut)
