@@ -28,7 +28,7 @@ namespace App.UI.Pages
                 _titleOrigin,
                 _subtitleOrigin;
 
-        private float _offset = CurrentScreen.CurrentResolution().y / 4;
+        private float _offset = ScreenManager.CurrentScreen.CurrentResolution.y / 4;
 
         public override void OnEnter()
         {

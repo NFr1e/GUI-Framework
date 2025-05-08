@@ -31,7 +31,7 @@ namespace App.UI.Pages
         private Vector3
                 _pageRootOrigin;
 
-        private float _offset = CurrentScreen.CurrentResolution().y / 3;
+        private float _offset = ScreenManager.CurrentScreen.CurrentResolution.y / 3;
 
         public override void OnEnter()
         {

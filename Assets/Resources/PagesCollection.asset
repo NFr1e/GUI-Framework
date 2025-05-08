@@ -31,3 +31,6 @@ MonoBehaviour:
   - PageName: Settings.General
     PageObject: {fileID: 5814669361292125280, guid: b353de5cd8e8bba41aee5d3882294d3c, type: 3}
     PageKey: pages.settings.general
+  - PageName: Settings.General.FrameRate
+    PageObject: {fileID: 372871931654668181, guid: 7e0f078bdc0fa95498309df08dbe222c, type: 3}
+    PageKey: pages.settings.general.framerate

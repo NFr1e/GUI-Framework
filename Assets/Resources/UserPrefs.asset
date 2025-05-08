@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80f3a255081a0648adbe0135d4bb3ff, type: 3}
   m_Name: UserPrefs
   m_EditorClassIdentifier: 
-  UseSplashScreen: 1
-  TargetFrameRate: 120
+  HasSaved: 1
+  UseFullScreen: 1
+  UseSplashScreen: 0
+  UseVsync: 1
+  TargetFrameRate: 240
+  TargetRefreshRate: 240
+  PreferredStartPageIndex: 0

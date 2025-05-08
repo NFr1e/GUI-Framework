@@ -2,26 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Lean.Gui;
 
 namespace App.User.Controller
 {
-    public class UserPrefsEvents
-    {
-        public static bool PrefsLoaded = false;
-
-        public static event System.Action OnValueChanged;
-
-        public static void ChangeUserPrefsValue() => OnValueChanged?.Invoke();
-    }
-
     [RequireComponent(typeof(Button))]
-    public class UserPrefsToggleController : MonoBehaviour
+    public class UserPrefsIntController : MonoBehaviour
     {
         public UserPrefsCollection UserPrefs;
         public string TargetField = "Filed";
 
-        public LeanToggle Toggle;
+        public int TargetValue = 0;
+        public Text Displayer;
 
         private Button _button;
 
@@ -29,16 +20,19 @@ namespace App.User.Controller
         {
             _button = GetComponent<Button>();
 
-            InitToggle();
+            InitValue();
             RegisterListener();
         }
         private void OnDestroy()
         {
             UnregisterListener();
         }
-        private void InitToggle()
+        private void InitValue()
         {
-            Toggle.On = (bool)typeof(UserPrefsCollection).GetField(TargetField).GetValue(UserPrefs);
+            if (this.Displayer != null)
+            {
+                Displayer.text = typeof(UserPrefsCollection).GetField(TargetField).GetValue(UserPrefs).ToString();
+            }
         }
 
         private void RegisterListener()
@@ -51,8 +45,10 @@ namespace App.User.Controller
         }
         private void SetValue()
         {
-            typeof(UserPrefsCollection).GetField(TargetField).SetValue(UserPrefs, Toggle.On);
-            Debug.Log($"{typeof(UserPrefsCollection).Name}.{typeof(UserPrefsCollection).GetField(TargetField)} 设置为{Toggle.On}");
+            typeof(UserPrefsCollection).GetField(TargetField).SetValue(UserPrefs, TargetValue);
+            Debug.Log($"{typeof(UserPrefsCollection).Name}.{typeof(UserPrefsCollection).GetField(TargetField)} 设置为{TargetValue}");
+
+            InitValue();
 
             UserPrefsEvents.ChangeUserPrefsValue();
         }

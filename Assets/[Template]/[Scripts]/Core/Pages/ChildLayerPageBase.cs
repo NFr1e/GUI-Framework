@@ -7,7 +7,7 @@ using App;
 
 namespace App.UI.Pages
 {
-    public class AboutPage : PageBase
+    public class ChildLayerPageBase : PageBase
     {
         public Button ExitTrigger;
 
@@ -38,8 +38,7 @@ namespace App.UI.Pages
 
             ExitTrigger.onClick.AddListener(() =>
             {
-                UIManager.Instance.UnloadPage("pages.about");
-                UIManager.Instance.DoPageOnEnter("pages.tabbar");
+                UIManager.Instance.UnloadPage(this);
             }
             );
 

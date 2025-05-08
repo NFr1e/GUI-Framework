@@ -4,11 +4,19 @@ using UnityEngine;
 
 namespace App.User.Controller
 {
+    public class UserPrefsEvents
+    {
+        public static bool PrefsLoaded = false;
+
+        public static event System.Action OnValueChanged;
+
+        public static void ChangeUserPrefsValue() => OnValueChanged?.Invoke();
+    }
     public class UserPrefsManager : MonoBehaviour
     {
         public UserPrefsCollection UserPrefs;
 
-        private void OnEnable()
+        private void Awake()
         {
             LoadUserPrefs();
 

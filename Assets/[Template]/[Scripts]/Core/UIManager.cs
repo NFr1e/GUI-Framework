@@ -1,17 +1,11 @@
 using System;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.UI
 {
-    public class CurrentScreen
-    {
-        public static Vector2 CurrentResolution()
-        {
-            return new Vector2(Screen.width, Screen.height);
-        }
-    }
     public class UIManager : Singleton<UIManager>
     {
         [SerializeField]
@@ -61,18 +55,38 @@ namespace App.UI
         {
             if (_pageCache.TryGetValue(pageKey, out PageBase page))
             {
-                StartCoroutine(UnloadProcess(pageKey,page));
+                StartCoroutine(UnloadProcess(page));
 
                 _pageCache.Remove(pageKey);
             }
         }
-        public IEnumerator UnloadProcess(string key,PageBase page)
+        public void UnloadPage(PageBase page)
+        {
+            if(_pageCache.ContainsValue(page))
+            {
+                StartCoroutine(UnloadProcess(page));
+
+                var keys= _pageCache.Where(kvp => kvp.Value == page).Select(kvp => kvp.Key).ToList();
+                foreach(var key in keys)
+                {
+                    _pageCache.Remove(key);
+                }
+            }
+        }
+        public IEnumerator UnloadProcess(PageBase page)
         {
             yield return page.OnExit();
 
             if (page != null)
             {
                 Destroy(page.gameObject);
+            }
+        }
+        public void DoPageOnExit(PageBase page)
+        {
+            if (_pageCache.ContainsValue(page))
+            {
+                StartCoroutine(DoPageOnExitProcess(page));
             }
         }
         public void DoPageOnExit(string pageKey)
@@ -82,7 +96,7 @@ namespace App.UI
                 StartCoroutine(DoPageOnExitProcess(page));
             }
         }
-        public IEnumerator DoPageOnExitProcess<T>(T page) where T : PageBase
+        public IEnumerator DoPageOnExitProcess(PageBase page)
         {
             yield return page.OnExit();
         }

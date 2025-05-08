@@ -12,10 +12,13 @@ namespace App.User
         public bool HasSaved = false;
         [BoxGroup("Toggles")]
         public bool
-            UseSplashScreen = false;
+            UseFullScreen = true,
+            UseSplashScreen = false,
+            UseVsync = false;
         [BoxGroup("Integers")]
         public int
-            TargetFrameRate = 120,
+            TargetFrameRate = 60,
+            TargetRefreshRate = 60,
             PreferredStartPageIndex = 0;
 
         /// <summary>
@@ -24,6 +27,8 @@ namespace App.User
         public void SavePrefs()
         {
             PlayerPrefs.SetInt("userprefs.toggles.usesplashscreen", UseSplashScreen ? 1 : 0);
+            PlayerPrefs.SetInt("userprefs.toggles.usefullscreen", UseFullScreen ? 1 : 0);
+            PlayerPrefs.SetInt("userprefs.toggles.usevsync", UseVsync ? 1 : 0);
             PlayerPrefs.SetInt("userprefs.integers.targetframerate", TargetFrameRate);
             PlayerPrefs.SetInt("userprefs.integers.preferredstartpageindex", PreferredStartPageIndex);
 
@@ -38,6 +43,8 @@ namespace App.User
         {
             GetValue("userprefs.hassaved", ref HasSaved);
             GetValue("userprefs.toggles.usesplashscreen", ref UseSplashScreen);
+            GetValue("userprefs.toggles.usefullscreen", ref UseFullScreen);
+            GetValue("userprefs.toggles.usevsync", ref UseVsync);
             GetValue("userprefs.integers.targetframerate", ref TargetFrameRate);
             GetValue("userprefs.integers.preferredstartpageindex", ref PreferredStartPageIndex);
         }
