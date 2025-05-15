@@ -571,6 +571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1418293786}
   - component: {fileID: 1418293788}
+  - component: {fileID: 1418293789}
   m_Layer: 0
   m_Name: AppStarter
   m_TagString: Untagged
@@ -607,6 +608,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FirstPage: pages.tabbar
   UserPrefs: {fileID: 11400000, guid: 5cdba42a8cfba8649936ac3e919f4177, type: 2}
+--- !u!114 &1418293789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418293785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94288329f7e9dc441b06992f0a23074e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetFrameRate: 120
+  TargetRefreshRate: 120
 --- !u!1 &1433824671
 GameObject:
   m_ObjectHideFlags: 0

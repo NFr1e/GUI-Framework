@@ -9,10 +9,6 @@ namespace App.UI.Pages
 {
     public class OptionsPage : PageBase
     {
-        public Button 
-            AboutButton,
-            Settings_GeneralButton;
-
         public float
             DurationIn = 0.5f,
             DurationOut = 0.5f;
@@ -40,6 +36,7 @@ namespace App.UI.Pages
 
             StartCoroutine(EnterAnimate());
 
+            /*
             AboutButton.onClick.AddListener(() =>
             {
                 UIManager.Instance.LoadPage("pages.about");
@@ -51,6 +48,7 @@ namespace App.UI.Pages
                 UIManager.Instance.DoPageOnExit("pages.tabbar");
             }
             );
+            */
         }
         public override void OnUpdate()
         {

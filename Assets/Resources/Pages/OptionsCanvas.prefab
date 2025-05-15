@@ -801,8 +801,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ddae87bde947f4e8600a4045f6f8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AboutButton: {fileID: 2061187452645451309}
-  Settings_GeneralButton: {fileID: 2061187453498815193}
   DurationIn: 0.5
   DurationOut: 0.5
   EaseIn: 18
@@ -894,6 +892,8 @@ GameObject:
   - component: {fileID: 2061187452645451311}
   - component: {fileID: 2061187452645451308}
   - component: {fileID: 2061187452645451309}
+  - component: {fileID: 7563738939700573588}
+  - component: {fileID: 4874273277622190314}
   m_Layer: 0
   m_Name: AboutButton
   m_TagString: Untagged
@@ -1006,6 +1006,32 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7563738939700573588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061187452645451315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318a5ce1b8386584ab3c27e3aeeb9fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PageKey: pages.about
+--- !u!114 &4874273277622190314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061187452645451315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1247fc0129e21c14ea1970858bc7a047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PageKey: pages.tabbar
 --- !u!1 &2061187452670107570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,6 +2029,8 @@ GameObject:
   - component: {fileID: 2061187453498815195}
   - component: {fileID: 2061187453498815192}
   - component: {fileID: 2061187453498815193}
+  - component: {fileID: 5191349655158968940}
+  - component: {fileID: 6688201149654524800}
   m_Layer: 0
   m_Name: GeneralSettingsButton
   m_TagString: Untagged
@@ -2115,6 +2143,32 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5191349655158968940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061187453498815199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318a5ce1b8386584ab3c27e3aeeb9fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PageKey: pages.settings.general
+--- !u!114 &6688201149654524800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061187453498815199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1247fc0129e21c14ea1970858bc7a047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PageKey: pages.tabbar
 --- !u!1 &4807855067642437889
 GameObject:
   m_ObjectHideFlags: 0
